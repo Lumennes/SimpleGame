@@ -11,13 +11,12 @@ public class GameManager : MonoBehaviour
     IEnumerator Start()
     {
         yield return new WaitForSecondsRealtime(5);
-
-        text.text = "Новый текст";
+        text.text = "РўРµРєСЃС‚РѕРІС‹Р№";
     }
 
     // Update is called once per frame
     //void Update()
     //{
         
-    //}
+    //} 
 }
