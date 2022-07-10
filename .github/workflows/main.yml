@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         projectName:
-          - webgl
+          - SimpleGame
           #projectPath:
           #  - test-project
           #unityVersion:
