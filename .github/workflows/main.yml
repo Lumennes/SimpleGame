@@ -89,7 +89,7 @@ jobs:
       - name: Upload 
         uses: Difegue/action-megacmd@master
         with:
-          args: put /home/runner/work/SimpleGame/SimpleGame/build /exportedstuff/
+          args: put build /exportedstuff/
         env:
           USERNAME: ${{ secrets.MEGAUSERNAME }}
           PASSWORD: ${{ secrets.MEGAPASSWORD }}
