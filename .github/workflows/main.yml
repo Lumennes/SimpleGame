@@ -27,8 +27,8 @@ jobs:
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
           #- StandaloneLinux64 # Build a Linux 64-bit standalone.
           #- iOS # Build an iOS player.
-          - Android # Build an Android .apk.
-          - WebGL # WebGL.
+          #- Android # Build an Android .apk.
+          #- WebGL # WebGL.
           #          - StandaloneWindows # Build a Windows standalone.
           #          - WSAPlayer # Build an Windows Store Apps player.
           #          - PS4 # Build a PS4 Standalone.
@@ -72,16 +72,24 @@ jobs:
         with:
          args: zip -qq -r build/${{ matrix.projectName }}_${{ matrix.targetPlatform }}_${{ steps.date.outputs.date }}.zip build/${{ matrix.targetPlatform }}/ 
          
-      - uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      #- uses: SamKirkland/FTP-Deploy-Action@4.3.0
+       # with:
+        # server: ${{ secrets.FTP_SERVER }}
+         #username: ${{ secrets.FTP_USERNAME }}
+         #password: ${{ secrets.FTP_PASSWORD }}
+         #local-dir: build/
+         #server-dir: /domains/${{ secrets.SITE }}/public_html/${{ matrix.projectName }}/${{ matrix.targetPlatform }}/
+         #state-name: ../.ftp-deploy-sync-state.json
+         #exclude: |
+          # **/StandaloneWindows64/**
+           #**/WebGL/**
+           #**/Android/**
+           #*.apk*
+           
+      - name: Upload 
+        uses: Difegue/action-megacmd@master
         with:
-         server: ${{ secrets.FTP_SERVER }}
-         username: ${{ secrets.FTP_USERNAME }}
-         password: ${{ secrets.FTP_PASSWORD }}
-         local-dir: build/
-         server-dir: /domains/${{ secrets.SITE }}/public_html/${{ matrix.projectName }}/${{ matrix.targetPlatform }}/
-         state-name: ../.ftp-deploy-sync-state.json
-         exclude: |
-           **/StandaloneWindows64/**
-           **/WebGL/**
-           **/Android/**
-           *.apk*
+          args: put /build/ /exportedstuff/
+        env:
+          USERNAME: ${{ secrets.MEGAUSERNAME }}
+          PASSWORD: ${{ secrets.MEGAPASSWORD }}
