@@ -27,8 +27,8 @@ jobs:
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
           #- StandaloneLinux64 # Build a Linux 64-bit standalone.
           #- iOS # Build an iOS player.
-          #- Android # Build an Android .apk.
-          #- WebGL # WebGL.
+          - Android # Build an Android .apk.
+          - WebGL # WebGL.
           #          - StandaloneWindows # Build a Windows standalone.
           #          - WSAPlayer # Build an Windows Store Apps player.
           #          - PS4 # Build a PS4 Standalone.
@@ -89,7 +89,9 @@ jobs:
       - name: Upload 
         uses: Difegue/action-megacmd@master
         with:
-          args: put build /exportedstuff/
+          args: put -c build /exportedstuff/
         env:
           USERNAME: ${{ secrets.MEGAUSERNAME }}
           PASSWORD: ${{ secrets.MEGAPASSWORD }}
+          
+          #/home/runner/work/SimpleGame/SimpleGame
